@@ -2,8 +2,9 @@
 
 gs-simple is a general java lib for some useful logic or module.
 
-The following function will be added one by one in future, and it is under developing.
+The following functions will be added one by one in future, and they are all under developing.
 
+0. A base project with some useful utils (Done)
 1. Event bus (Under dev)
 2. A cluster module (Plan)
 3. Remote event bus based on the cluster module (Plan)
