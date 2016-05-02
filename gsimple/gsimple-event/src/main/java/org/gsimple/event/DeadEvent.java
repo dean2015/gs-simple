@@ -1,12 +1,19 @@
+/*
+ * Copyright © gaosong
+ *
+ * This program and the accompanying materials are licensed under
+ * the terms of the GNU Lesser General Public License version 3.0
+ * as published by the Free Software Foundation.
+ */
 package org.gsimple.event;
 
 import org.gsimple.common.utils.CheckObject;
 
 /**
- * An event whose handler could not be found.
+ * An event whose listener could not be found.
  * 
  * @author gaosong
- * @version 1.0.0
+ * 
  */
 public class DeadEvent {
 

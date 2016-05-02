@@ -1,3 +1,10 @@
+/*
+ * Copyright © gaosong
+ *
+ * This program and the accompanying materials are licensed under
+ * the terms of the GNU Lesser General Public License version 3.0
+ * as published by the Free Software Foundation.
+ */
 package org.gsimple.event;
 
 import java.lang.annotation.Annotation;
@@ -11,7 +18,13 @@ import org.gsimple.event.annotation.DefaultEventListenerMethodAnnotation;
 import org.gsimple.event.annotation.EventListenerMethod;
 
 /**
- * Not thread safe
+ * Abstract event bus while implements event bus interface
+ * 
+ * This class provides a general operation of an event bus.
+ * 
+ * A customized event bus should be extended this class, and it is easy to do that.
+ * 
+ * PS: Not thread safe
  * 
  * @author gaosong
  * 

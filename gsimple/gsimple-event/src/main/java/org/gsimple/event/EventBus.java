@@ -1,28 +1,24 @@
+/*
+ * Copyright © gaosong
+ *
+ * This program and the accompanying materials are licensed under
+ * the terms of the GNU Lesser General Public License version 3.0
+ * as published by the Free Software Foundation.
+ */
 package org.gsimple.event;
 
 /**
- * 事件总线接口
+ * Event bus interface
+ * 
  * @author gaosong
  *
  */
 public interface EventBus {
 
-	/**
-	 * 发布事件
-	 * @param event
-	 */
 	void publish(Object event);
 
-	/**
-	 * 注册事件处理
-	 * @param eventListener
-	 */
 	void register(Object eventListener);
 
-	/**
-	 * 注销事件处理
-	 * @param eventListener
-	 */
 	void unregister(Object eventListener);
 
 }

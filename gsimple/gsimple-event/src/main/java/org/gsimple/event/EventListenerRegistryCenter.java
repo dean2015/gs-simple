@@ -1,3 +1,10 @@
+/*
+ * Copyright © gaosong
+ *
+ * This program and the accompanying materials are licensed under
+ * the terms of the GNU Lesser General Public License version 3.0
+ * as published by the Free Software Foundation.
+ */
 package org.gsimple.event;
 
 import java.lang.reflect.Method;
@@ -15,6 +22,12 @@ import java.util.concurrent.Executor;
 import org.gsimple.common.utils.ClassesScaner;
 import org.gsimple.event.annotation.EventListenerMethodAnnotation;
 
+/**
+ * Event listener registry center
+ * 
+ * @author Administrator
+ * 
+ */
 public final class EventListenerRegistryCenter {
 
 	private final ConcurrentMap<Class<?>, CopyOnWriteArraySet<EventListener>> eventListenerMap = new ConcurrentHashMap<Class<?>, CopyOnWriteArraySet<EventListener>>();

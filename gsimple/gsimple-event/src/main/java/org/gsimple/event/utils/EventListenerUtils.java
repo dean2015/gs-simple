@@ -1,3 +1,10 @@
+/*
+ * Copyright © gaosong
+ *
+ * This program and the accompanying materials are licensed under
+ * the terms of the GNU Lesser General Public License version 3.0
+ * as published by the Free Software Foundation.
+ */
 package org.gsimple.event.utils;
 
 import java.lang.annotation.Annotation;
@@ -8,8 +15,22 @@ import java.util.Set;
 
 import org.gsimple.common.utils.ClassesScaner;
 
+/**
+ * Event listener utilities
+ * 
+ * @author gaosong
+ * 
+ */
 public abstract class EventListenerUtils {
 
+	/**
+	 * Find out event listener method from an event listener class with the
+	 * specific annotation
+	 * 
+	 * @param eventListener
+	 * @param annotationClass
+	 * @return
+	 */
 	public static Set<Class<?>> findEvents(Object eventListener,
 			Class<? extends Annotation> annotationClass) {
 		Set<Class<?>> events = new HashSet<Class<?>>();
@@ -29,9 +50,17 @@ public abstract class EventListenerUtils {
 		return events;
 	}
 
+	/**
+	 * Scan all classes (jar is not included) and find out event listener method
+	 * from an event listener class with the specific annotation
+	 * 
+	 * @param annotationClass
+	 * @return
+	 */
 	public static Iterator<Class<?>> findEventListenerWithAnnotation(
 			Class<?> annotationClass) {
 		Set<Class<?>> classesWithAnnotation = new HashSet<Class<?>>();
+		// Scan all classes (jar is not included)
 		Set<Class<?>> classes = ClassesScaner.scanAllClasses(false);
 		for (Class<?> clz : classes) {
 			Annotation[] annotations = clz.getAnnotations();
