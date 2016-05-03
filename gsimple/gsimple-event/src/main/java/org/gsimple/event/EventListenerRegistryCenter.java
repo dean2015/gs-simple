@@ -38,7 +38,7 @@ public final class EventListenerRegistryCenter {
 		this.eventListenerMethodAnnotation = eventAnnotation;
 	}
 
-	public Iterator<EventListener> get(Object event) {
+	Iterator<EventListener> get(Object event) {
 		CopyOnWriteArraySet<EventListener> listeners = eventListenerMap
 				.get(event.getClass());
 		return listeners == null ? null : listeners.iterator();
