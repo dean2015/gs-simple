@@ -8,11 +8,16 @@
 package org.gsimple.event.test;
 
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.gsimple.event.DefaultEventBus;
 import org.gsimple.event.EventBus;
 
 public class TestMain {
+
+	private static final Logger logger = Logger.getLogger(TestMain.class
+			.getName());
 
 	public static EventBus eventBus = new DefaultEventBus(
 			Executors.newFixedThreadPool(1), TestMethod.class);
@@ -22,6 +27,8 @@ public class TestMain {
 		Event event = new ChildEvent();
 		event.time = System.currentTimeMillis();
 		eventBus.publish(event);
+
+		logger.log(Level.INFO, "Process will finish in 10 sec.");
 	}
 
 }
