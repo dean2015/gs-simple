@@ -38,7 +38,7 @@ public final class EventListener {
 		this.executor = executor;
 	}
 
-	public void call(final Object event) {
+	void call(final Object event) {
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
@@ -61,11 +61,11 @@ public final class EventListener {
 		});
 	}
 
-	public Object getEventListenerInstance() {
+	Object getEventListenerInstance() {
 		return eventListenerInstance;
 	}
 
-	public Method getEventListenerMethod() {
+	Method getEventListenerMethod() {
 		return eventListenerMethod;
 	}
 

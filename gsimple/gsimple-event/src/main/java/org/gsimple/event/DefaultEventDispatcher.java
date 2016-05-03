@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.gsimple.common.utils.CheckObject;
 
 public enum DefaultEventDispatcher implements EventDispatcher {
+	
 	DIRECT_DISPATCHER {
 
 		@Override
