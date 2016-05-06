@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.concurrent.Executor;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.gsimple.common.utils.CheckObject;
 import org.gsimple.event.annotation.DefaultEventListenerMethodAnnotation;
@@ -22,7 +24,8 @@ import org.gsimple.event.annotation.EventListenerMethod;
  * 
  * This class provides a general operation of an event bus.
  * 
- * A customized event bus should be extended this class, and it is easy to do that.
+ * A customized event bus should be extended this class, and it is easy to do
+ * that.
  * 
  * PS: Not thread safe
  * 
@@ -30,6 +33,9 @@ import org.gsimple.event.annotation.EventListenerMethod;
  * 
  */
 public abstract class AbstractEventBus implements EventBus {
+
+	private static final Logger logger = Logger
+			.getLogger(AbstractEventBus.class.getName());
 
 	protected final EventListenerRegistryCenter eventListenerRegistryCenter;
 
@@ -61,6 +67,13 @@ public abstract class AbstractEventBus implements EventBus {
 
 	@Override
 	public void register(Object eventListener) {
+		try {
+			CheckObject.checkIsNull(eventListener);
+		} catch (NullPointerException e) {
+			logger.log(Level.SEVERE,
+					"The eventlistener which is to register is Null.", e);
+			return;
+		}
 		lock.writeLock().lock();
 		try {
 			eventListenerRegistryCenter.register(eventListener, executor);
@@ -71,6 +84,13 @@ public abstract class AbstractEventBus implements EventBus {
 
 	@Override
 	public void unregister(Object eventListener) {
+		try {
+			CheckObject.checkIsNull(eventListener);
+		} catch (NullPointerException e) {
+			logger.log(Level.SEVERE,
+					"The eventlistener which is to unregister is Null.", e);
+			return;
+		}
 		lock.writeLock().lock();
 		try {
 			eventListenerRegistryCenter.unregister(eventListener);
