@@ -8,6 +8,7 @@
 	<modules>
 		<module>gsimple-common</module>
 		<module>gsimple-event</module>
+		<module>gsimple-command</module>
 	</modules>
 	<build>
 		<plugins>
