@@ -5,7 +5,7 @@
  * the terms of the GNU Lesser General Public License version 3.0
  * as published by the Free Software Foundation.
  */
-package org.gsimple.event.test;
+package org.gsimple.event.test.adv;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

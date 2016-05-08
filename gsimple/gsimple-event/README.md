@@ -9,39 +9,64 @@ There are some logic different from guava as well, and I think they make the eve
 
 ### How to use it?
 
-1. Definde an event class.
+1 Definde an event class.
 
-    `public class Event {
+```
+public class Event {
 
-        private Object data;
+    private Object data;
 
-        public Object getData() {
-            return data;
-        }
+    public Object getData() {
+        return data;
+    }
 
-        public void setData(Object data) {
-            this.data = data
-        }
-       
-    }`
+    public void setData(Object data) {
+        this.data = data;
+    }
+   
+}
+```
 
-2. Define an annotation of event listener.
+2 Define an annotation of event listener.
 
-    `@Inherited
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    public @interface TestMethod {
+```
+@Inherited
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface TestMethod {
 
-    }`
+}
+```
 
+3 Define an event listener class.
 
-3. Define an event listener class.
+```
+public class EventListener {
 
-    `public class EventListener {
+    @TestMethod
+    private void handle(Event e) {
+        //TODO: deal with e.getData()
+        System.out.println(e.getData());
+    }
 
-        @TestMethod
-        private void handle(Event e) {
-            //TODO: deal with e.getData()
-        }
+}
+```
 
-    }`
+4 Test class
+```
+public class TestMain {
+
+    public static void main(String[] args) throws InterruptedException {
+        // Concrete an eventbus
+        EventBus eventBus = new DefaultEventBus(TestMethod.class);
+        // Register eventListener
+        eventBus.register(new EventListener());
+        // Concrete an event
+        Event event = new Event();
+        event.setData("Hello world!");
+        // publish the event
+        eventBus.publish(event);
+    }
+
+}
+```
