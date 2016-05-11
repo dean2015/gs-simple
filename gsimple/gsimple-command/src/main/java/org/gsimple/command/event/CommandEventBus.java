@@ -34,7 +34,7 @@ public class CommandEventBus extends AbstractEventBus {
 		Properties properties = new Properties();
 		try {
 			InputStream input = CommandBus.class.getClassLoader()
-					.getResourceAsStream("rule-config.properties");
+					.getResourceAsStream("command-config.properties");
 			properties.load(input);
 			if (!properties.isEmpty()) {
 				threadPoolSize = Integer.parseInt(properties
