@@ -1,13 +1,13 @@
 package org.gsimple.event.test.base;
 
-import org.gsimple.event.DefaultEventBus;
+import org.gsimple.event.BaseEventBus;
 import org.gsimple.event.EventBus;
 
 public class TestMain {
 
     public static void main(String[] args) throws InterruptedException {
         // Concrete an eventbus
-        EventBus eventBus = new DefaultEventBus(TestMethod.class);
+        EventBus eventBus = new BaseEventBus(TestMethod.class);
         // Register eventListener
         eventBus.register(new EventListener());
         // Concrete an event

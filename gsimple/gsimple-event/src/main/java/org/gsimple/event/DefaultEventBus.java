@@ -7,9 +7,11 @@
  */
 package org.gsimple.event;
 
-import java.lang.annotation.Annotation;
-import java.util.concurrent.Executor;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.gsimple.event.annotation.EventListenerMethod;
 
@@ -21,21 +23,41 @@ import org.gsimple.event.annotation.EventListenerMethod;
  */
 public final class DefaultEventBus extends AbstractEventBus {
 
-	public DefaultEventBus() {
-		this(Executors.newFixedThreadPool(1));
+	private static final Logger logger = Logger.getLogger(DefaultEventBus.class
+			.getName());
+
+	static int threadPoolSize = 10;
+
+	static {
+		Properties properties = new Properties();
+		try {
+			InputStream input = DefaultEventBus.class.getClassLoader()
+					.getResourceAsStream("default-eventbus-config.properties");
+			properties.load(input);
+			if (!properties.isEmpty()) {
+				threadPoolSize = Integer.parseInt(properties
+						.getProperty("THREAD_POOL_SIZE"));
+			}
+		} catch (Exception e) {
+			logger.log(
+					Level.WARNING,
+					"Get threadpool size of default eventbus in error. Threadpool size will be set to 10 as default.",
+					e);
+		}
 	}
 
-	public DefaultEventBus(Executor executor) {
-		this(executor, EventListenerMethod.class);
+	private DefaultEventBus() {
+		super(Executors.newFixedThreadPool(threadPoolSize),
+				EventListenerMethod.class);
+
 	}
 
-	public DefaultEventBus(Class<? extends Annotation> annotationClass) {
-		this(Executors.newFixedThreadPool(1), annotationClass);
+	private static class InnerInstance {
+		private static final DefaultEventBus instance = new DefaultEventBus();
 	}
 
-	public DefaultEventBus(Executor executor,
-			Class<? extends Annotation> annotationClass) {
-		super(executor, annotationClass);
+	public static DefaultEventBus getInstance() {
+		return InnerInstance.instance;
 	}
 
 }

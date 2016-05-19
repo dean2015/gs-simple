@@ -13,7 +13,6 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.gsimple.command.CommandBus;
 import org.gsimple.command.event.annotation.CommandHandlerMethod;
 import org.gsimple.event.AbstractEventBus;
 
@@ -33,7 +32,7 @@ public class CommandEventBus extends AbstractEventBus {
 	static {
 		Properties properties = new Properties();
 		try {
-			InputStream input = CommandBus.class.getClassLoader()
+			InputStream input = CommandEventBus.class.getClassLoader()
 					.getResourceAsStream("command-config.properties");
 			properties.load(input);
 			if (!properties.isEmpty()) {

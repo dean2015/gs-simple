@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.gsimple.event.DefaultEventBus;
+import org.gsimple.event.BaseEventBus;
 import org.gsimple.event.EventBus;
 
 public class TestMain {
@@ -19,7 +19,7 @@ public class TestMain {
 	private static final Logger logger = Logger.getLogger(TestMain.class
 			.getName());
 
-	public static EventBus eventBus = new DefaultEventBus(
+	public static EventBus eventBus = new BaseEventBus(
 			Executors.newFixedThreadPool(1), TestMethod.class);
 
 	public static void main(String[] args) throws InterruptedException {
